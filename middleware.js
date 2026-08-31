@@ -1,5 +1,4 @@
 export const config = {
-  runtime: 'nodejs',
   matcher: '/((?!favicon.ico).*)',
 };
 
@@ -14,7 +13,7 @@ export default function middleware(request) {
       const user = decoded.slice(0, i);
       const pass = decoded.slice(i + 1);
       if (user === process.env.SITE_USER && pass === process.env.SITE_PASS) {
-        return; // correct — let Vercel serve the page
+        return fetch(request);
       }
     }
   }
